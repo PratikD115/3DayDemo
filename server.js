@@ -15,7 +15,7 @@ app.listen(process.env.PORT, "127.0.0.1", () => {
 const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
   process.env.DATABASE_PASSWORD
-);
+);   
 
 // const DB = "mongodb://localhost:27017";
 

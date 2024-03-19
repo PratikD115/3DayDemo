@@ -7,44 +7,27 @@ const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: [true, "please enter the firstName"],
     },
     lastName: {
       type: String,
     },
-    
+    profile: {
+      type: String,
+    },
     age: {
       type: Number,
-      min: 0,
-      max: 100,
-      required: [true, "Please Enter the age of the person"],
     },
     email: {
       type: String,
-      validate: [validator.isEmail, "Please enter the valid email adress"],
-      required: [true, "provide the email address of the user"],
-      unique: [true, "email should be unique"],
     },
     phoneNumber: {
-      maxLength: [10, "please enter the valid Phone number."],
-      minLength: [10, "please enter the valid Phone number."],
-      type: String,
-      required: [true, "Please enter the phone number"],
+      type: Number,
     },
     password: {
       type: String,
-      minLength : 8,
-      required: [true, "Please enter the password"],
     },
     passwordConfirm: {
       type: String,
-      required: [true, "Please enter the passwordConfirm"],
-      validate: {
-        validator: function (cp) {
-          return cp === this.password;
-        },
-        message: "Password should be match with confirm password",
-      },
     },
     role: {
       type: String,
@@ -79,6 +62,7 @@ userSchema.pre("save", async function (next) {
   //if password is changed then encrypt it using the bcrypt package using the hash function
   //of the cost 12
   console.log("user password : " + this.password);
+  
   this.password = await bcrypt.hash(this.password, 12);
   //before this function work it already check that the password and confirmpassword is same
   //and for that now we no longer use the confirmpassword for any reason

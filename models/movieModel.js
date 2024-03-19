@@ -4,24 +4,22 @@ const movieSchema = new mongoose.Schema(
   {
     isActive: {
       type: Boolean,
-      default : true
+      default: true,
     },
     title: {
       type: String,
-      unique: true,
-      require: [true, "Please! provide the title of the movie."],
     },
     genres: {
       type: String,
-      require: [true, "Please! provide the genres of the movie."],
+     
     },
     category: {
       type: String,
-      require: [true, "Please! provide the category of the movie."],
+    
     },
     director: {
       type: String,
-      required: [true, "Please provide the directore name of the movie."],
+    
     },
     releaseDate: {
       type: Date,
@@ -35,7 +33,7 @@ const movieSchema = new mongoose.Schema(
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-    id : false
+    id: false,
   }
 );
 
